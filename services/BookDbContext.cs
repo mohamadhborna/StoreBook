@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using udemyproject.models;
+
 namespace udemyproject.services
 {
     public class BookDbContext:DbContext
@@ -14,6 +15,10 @@ namespace udemyproject.services
         public virtual DbSet<BookCategory> BookCategories{ get; set; }
         
         public BookDbContext(DbContextOptions<BookDbContext> options):base(options) {}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //optionsBuilder.UseSqlServer("server=.;database=myDb;trusted_connection=true;");
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
